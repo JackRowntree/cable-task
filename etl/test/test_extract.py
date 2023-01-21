@@ -1,12 +1,14 @@
 def test_pre_extract():
-	pass
+    pass
+
 
 def test_extract():
-	pass
+    pass
+
 
 def test_read_raw_data():
-	pass
+    pass
+
 
 def test_handle_incoming_batch():
-	pass
-
+    pass

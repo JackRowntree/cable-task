@@ -4,13 +4,13 @@ from load import load
 
 
 def run_etl():
-	"""
-	Runs E, T and L
-	"""
-	pre_extract()
-	extracted_dfs = extract()
-	transformed_dfs = transform(extracted_dfs)
-	load(transformed_dfs)
+    """
+    Runs E, T and L
+    """
+    pre_extract()
+    extracted_df = extract()
+    transformed_df = transform(extracted_df)
+    load(transformed_df)
 
 
 if __name__ == "__main__":
