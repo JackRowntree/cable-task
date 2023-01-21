@@ -6,3 +6,7 @@ Overall architecture:
 2. extract: data read from db
 3. transform: data aggregated
 4. load: transformed data pushed to db
+
+# TODO
+script checks
+shoulds: QA checks, schemas, db upsert logic
