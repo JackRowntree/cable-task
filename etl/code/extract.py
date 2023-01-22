@@ -39,7 +39,8 @@ def pre_extract():
 
 def extract():
     """
-    Reads totality of raw data, runs checks, returns data
+    Reads totality of raw data, runs checks, returns data.
+    Ideally would push deduplicated data to a seperate db to be read by transform.
     """
     df = read_raw_data()
     apply_schemas_and_checks(df)

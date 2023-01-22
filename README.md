@@ -13,7 +13,7 @@ A working docker installation
 
 ## Other info
 
-This repo contains a short sample of the data supplied, so the repo is lightweight but still keeps everything coupled together. This is completely seperate choice to the issue of processing chunks of data etc.! If you want to run on the full sample dataset, just `mv` the file into `cable-task/et/data/enhanced_synthetic_data_2.csv`.
+This repo contains a short sample of the data supplied, so the repo is lightweight but still keeps everything coupled together. This is a completely seperate decision to the issue of processing chunks of data etc.! If you want to run on the full sample dataset, just `mv` the file into `cable-task/et/data/enhanced_synthetic_data_2.csv`.
 
 ## Notes on the dataset
 
@@ -71,4 +71,4 @@ The checks I added with pandera also have really low coverage, but again a contr
 More time could have been devoted to type hints, exhaustive docstrings. I sacrificed this for speed.
 
 #### Logging
-Detailed logging of ETL runs would obviously be essential in production, however I sacrificed this for speed.
+Detailed logging of ETL runs would obviously be essential in production, however I sacrificed this for speed.  
