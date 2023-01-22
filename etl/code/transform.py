@@ -16,7 +16,7 @@ def calculate_top_10_shared_postcodes(df):
     """
     aggregated = (
         df.groupby("postal_code", as_index=False)
-        .user_id.count()
+        .user_id.nunique()
         .rename(columns={"user_id": "count"})
         .sort_values("count", ascending=False)
         .reset_index(drop=True)
