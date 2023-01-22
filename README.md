@@ -40,7 +40,7 @@ Data is ingested from a hardcoded path in the repo. Subsequent reads will append
 
 #### Datastore
 I stuck to the sqlite brief - the dbs are persistent between runs of the container thanks to the volume, so raw data will keep being appended to the raw db, which is read by extract and deduplicated.
-Nortmally I would have extended the docker-compose with a postgres service instead as I haven't used sqlite in years!
+Normally I would have extended the docker-compose with a postgres service instead as I haven't used sqlite in years!
 
 #### Pre-extract
 The idea of the pre-extract phase is to `append` incoming chunks of data to a datastore, which will be read in totality in the extract step. This was my interpretation of a pipeline that can handle data ingestion over time in production. Adding a field indicating date of ingestion adds some context to this raw data. 
