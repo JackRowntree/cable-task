@@ -31,12 +31,14 @@ This dataset is full of personally identifiable info. That would obviously affec
 ## Notes on the solution
 
 ### Notes on architecture
-Data is ingested from a hardcoded path in the repo. Subsequent reads will keep appending ingested csv data into the raw db. Overall outline below:
+Data is ingested from a hardcoded path in the repo. Subsequent reads will keep appending ingested csv data into the raw db. Overall outline below + diagram:
 
 1. pre-extract: incoming raw csv chunk appended to raw db
 2. extract: full dataset read from raw db and deduplicated
 3. transform: data aggregated
 4. load: transformed data pushed to transformed db
+
+![](/system_diagram.png?raw=true "Optional Title")
 
 #### Datastore
 I stuck to the sqlite brief - the dbs are persistent between runs of the container thanks to the volume, so raw data will keep being appended to the raw db, which is read by extract and deduplicated.
