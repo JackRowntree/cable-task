@@ -1,12 +1,12 @@
-from common import read_data, push_data_to_db
+from code.common import read_data, push_data_to_db
 import sqlite3
 import pandas as pd
 import pandera as pa
 from pandera.typing import Series
 
 FPATH = "/etl/data/enhanced_synthetic_data_2.csv"
-CON_RAW = sqlite3.connect("raw_data.db")
-CON_EXTRACT = sqlite3.connect("extract_data.db")
+CON_RAW = sqlite3.connect("./sqlite/raw_data.db")
+CON_EXTRACT = sqlite3.connect("./sqlite/extract_data.db")
 
 
 class Schema(pa.SchemaModel):
@@ -17,7 +17,7 @@ class Schema(pa.SchemaModel):
     postal_code: Series[str] = pa.Field()
 
     @pa.check("postal_code")
-    def postal_code_regex(cls, series: Series[str]) -> Series[bool]:
+    def postal_code_regex_check(cls, series: Series[str]) -> Series[bool]:
         """check that postcodes match the uk gov regex!"""
         return series.str.match(
             "([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"

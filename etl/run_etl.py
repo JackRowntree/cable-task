@@ -1,6 +1,6 @@
-from extract import extract, pre_extract
-from transform import transform
-from load import load
+from code.extract import extract, pre_extract
+from code.transform import transform
+from code.load import load
 
 
 def run_etl():
