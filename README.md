@@ -60,13 +60,14 @@ This dataset is full of personally identifiable info. That would obviously affec
 ## Code improvements
 
 #### Testing
-Pytest suite exists and is run when the container spins up. As a time-saving choice I tested functionality that did fiddly stuff, which resulted in pretty low test coverage. Obviously in production this would be as high as possible.
+* Pytest suite exists and is run when the container spins up. As a time-saving choice I tested functionality that did fiddly stuff, which resulted in pretty low test coverage. Obviously in production this would be as high as possible. 
+* Having a CI-style github workflow would also be optimal, rather than testing at runtime which is weird but works OK for this task.
 
 #### Schema/QA
-The checks I added with pandera also have really low coverage, but again a contributor could easily augment it.
+* The checks I added with pandera also have really low coverage, but again a contributor could easily augment it.
 
 #### Code quality
-More time could have been devoted to type hints, exhaustive docstrings. I sacrificed this for speed.
+* More time could have been devoted to type hints, exhaustive docstrings. I sacrificed this for speed.
 
 #### Logging
-Detailed logging of ETL runs would obviously be essential in production, however I sacrificed this for speed.  
+* Detailed logging of ETL runs would obviously be essential in production, however I sacrificed this for speed.  
