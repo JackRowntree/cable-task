@@ -15,22 +15,7 @@ A working docker installation
 
 This repo contains a short sample of the data supplied, so the repo is lightweight but still keeps everything coupled together. If you want to run on the full sample dataset, just `mv` the file into `cable-task/etl/data/enhanced_synthetic_data_2.csv`.
 
-## Notes on the dataset
-
-### Data quality appears to be an issue:
-
-* user_id is duplicated
-* Some email addresses contain whitespace
-* Some phone numbers appear invalid
-* Many users share same `customer` value, which is not necessarily an issue
-
-### Data Governance
-This dataset is full of personally identifiable info. That would obviously affect all decisions about where this pipeline moves data too, and indeed whether it could run at all. 
-
-
-## Notes on the solution
-
-### Notes on architecture
+## Architecture
 Data is ingested from a hardcoded path in the repo. Subsequent reads will keep appending ingested csv data into the raw db. Overall outline below + diagram:
 
 1. pre-extract: incoming raw csv chunk appended to raw db
@@ -56,7 +41,19 @@ Runs a function calculating the top 10 most common postcodes.
 #### Load
 Replaces output db with latest aggregated results.
 
-### Notes on code
+## Notes on the dataset
+
+### Data quality appears to be an issue:
+
+* user_id is duplicated
+* Some email addresses contain whitespace
+* Some phone numbers appear invalid
+* Many users share same `customer` value, which is not necessarily an issue
+
+### Data Governance
+This dataset is full of personally identifiable info. That would obviously affect all decisions about where this pipeline moves data too, and indeed whether it could run at all. 
+
+## Code improvements
 
 #### Testing
 Pytest suite exists and is run when the container spins up. As a time-saving choice I tested functionality that did fiddly stuff, which resulted in pretty low test coverage. Obviously in production this would be as high as possible.
