@@ -19,7 +19,6 @@ This repo contains a short sample of the data supplied, so the repo is lightweig
 
 ### Data quality appears to be an issue:
 
-From a quick look in excel:
 * user_id is duplicated
 * Some email addresses contain whitespace
 * Some phone numbers appear invalid
