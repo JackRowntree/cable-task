@@ -35,7 +35,7 @@ Data is ingested from a hardcoded path in the repo. Subsequent reads will keep a
 * Adding a field indicating date of ingestion adds some context to this raw data. 
 
 #### Extract
-* Sends a `SELECT * ` query to the pre-extract db. An improvement would be some logic in this SQL query to handle duplicates rather than doing reading threm all into memory. This would also require some digging into why the duplicates might exist.
+* Sends a `SELECT * ` query to the pre-extract db. An improvement would be some logic in this SQL query to handle duplicates rather than reading them all into memory. This would also require some digging into why the duplicates might exist, and which should be retained.
 * Runs `pandera` schema checks - I just added one to validate the postcodes which are later used for the transformations. However this functionality could be easily expanded for a proper schema/QA step. 
 * Ideally, the extract stage would push to a third `extract` db to store deduplicated data, however I didn't get round to this due to time shortage.
 
