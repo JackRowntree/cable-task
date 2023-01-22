@@ -26,20 +26,24 @@ Data is ingested from a hardcoded path in the repo. Subsequent reads will keep a
 ![](/system_diagram.png?raw=true "Optional Title")
 
 #### Datastore
-I stuck to the sqlite brief - the dbs are persistent between runs of the container thanks to the volume, so raw data will keep being appended to the raw db, which is read by extract and deduplicated.
-Normally I would have extended the docker-compose with a postgres service instead as I haven't used sqlite in years!
+* The dbs are persistent between runs of the container thanks to the volume, so raw data will keep being appended to the raw db, which is read by extract and deduplicated.
+* Normally I would have extended the docker-compose with a postgres service instead as I haven't used sqlite in years!
 
 #### Pre-extract
-The idea of the pre-extract phase is to `append` incoming chunks of data to a datastore, which will be read in totality in the extract step. This was my interpretation of a pipeline that can handle data ingestion over time in production. Adding a field indicating date of ingestion adds some context to this raw data. 
+* The idea of the pre-extract phase is to `append` incoming chunks of data to an external datastore, can be batch-read in the extract step
+* This was my interpretation of a pipeline that can handle data ingestion over time in production. 
+* Adding a field indicating date of ingestion adds some context to this raw data. 
 
 #### Extract
-Sends a `SELECT * ` query to the pre-extract db. Runs `pandera` schema checks - I just added one to validate the postcodes which are later used for the transformations. However this functionality could be easily expanded for a proper schema/QA step. Ideally, the extract stage would push to a third `extract` db to store deduplicated data, however I didn't get round to this due to time shortage.
+* Sends a `SELECT * ` query to the pre-extract db. An improvement would be some logic in this SQL query to handle duplicates rather than doing reading threm all into memory. This would also require some digging into why the duplicates might exist.
+* Runs `pandera` schema checks - I just added one to validate the postcodes which are later used for the transformations. However this functionality could be easily expanded for a proper schema/QA step. 
+* Ideally, the extract stage would push to a third `extract` db to store deduplicated data, however I didn't get round to this due to time shortage.
 
 #### Transform
-Runs a function calculating the top 10 most common postcodes.
+* Runs a function calculating the top 10 most common postcodes.
 
 #### Load
-Replaces output db with latest aggregated results.
+* Replaces output db with latest aggregated results.
 
 ## Notes on the dataset
 
