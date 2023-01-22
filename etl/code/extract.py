@@ -43,6 +43,7 @@ def extract():
     """
     df = read_raw_data()
     apply_schemas_and_checks(df)
+    df = df.drop_duplicates('user_id')
     return df
 
 
@@ -88,7 +89,7 @@ def execute_create_table_statemtents():
     c.execute(
         """
 		CREATE TABLE IF NOT EXISTS raw_data (
-		user_id text PRIMARY KEY,
+		user_id text,
 		signup_time text,
 		name text,
 		address_lines text,
