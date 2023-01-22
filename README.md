@@ -52,23 +52,16 @@ Sends a `SELECT * ` query to the pre-extract db. Runs `pandera` schema checks - 
 Runs a function calculating the top 10 most common postcodes.
 
 #### Load
-Loads to output db
+Appends to output db
 
 ### Notes on code
 
 #### Testing
-Pytest suite exists and is run when the container spins up. As a time-saving choice I tested functionality that did fiddly stuff, which resulted in pretty low test coverage. Obviously in poroduction this would be as high as possible.
+Pytest suite exists and is run when the container spins up. As a time-saving choice I tested functionality that did fiddly stuff, which resulted in pretty low test coverage. Obviously in production this would be as high as possible.
 
 #### Schema/QA
 The checks I added with pandera also have really low coverage, but again a contributor could easily augment it.
 
 #### Code quality
 More time could have been devoted to type hints, exhaustive docstrings. I sacrificed this for speed.
-
-# TODO
-script checks
-shoulds: 
-QA checks, done
-schemas, done
-db upsert logic dnoe ish
 
