@@ -17,17 +17,13 @@ This repo contains a short sample of the data supplied, so the repo is lightweig
 
 ## Notes on the dataset
 
-### Data quality appears to be a significant issue:
+### Data quality appears to be an issue:
 
 From a quick look in excel:
 * user_id is duplicated
-* Time formats appear to be in stopwatch time, not clock time
-* Lots of names corrupted
 * Some email addresses contain whitespace
 * Some phone numbers appear invalid
-* DOB formats inconsistent
 * Many users share same `customer` value, which is not necessarily an issue
-* user_id unique?
 
 ### Data Governance
 This dataset is full of personally identifiable info. That would obviously affect all decisions about where this pipeline moves data too, and indeed whether it could run at all. 
@@ -36,7 +32,7 @@ This dataset is full of personally identifiable info. That would obviously affec
 ## Notes on the solution
 
 ### Notes on architecture
-I wrote my solution to be easily adaptable to work with an external persistent db, which would make the following architecture work in production. Obviously at the moment it just interacts with the sqlite dbs in the repo.
+Data is ingested from a hardcoded path in the repo. Subsequent reads will append chunks of data onto the raw db. Outline below:
 
 1. pre-extract: incoming raw csv chunk appended to raw db
 2. extract: full dataset read from raw db
