@@ -31,7 +31,7 @@ This dataset is full of personally identifiable info. That would obviously affec
 ## Notes on the solution
 
 ### Notes on architecture
-Data is ingested from a hardcoded path in the repo. Subsequent reads will append chunks of data onto the raw db. You can test this by running on multiple chunks if you wish (it does work!). Overall outline below:
+Data is ingested from a hardcoded path in the repo. Subsequent reads will keep appending ingested csv data into the raw db. Overall outline below:
 
 1. pre-extract: incoming raw csv chunk appended to raw db
 2. extract: full dataset read from raw db and deduplicated
