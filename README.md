@@ -13,7 +13,7 @@ A working docker installation
 
 ## Other info
 
-This repo contains a short sample of the data supplied, so the repo is lightweight but still keeps everything coupled together. If you want to run on the full sample dataset, just `mv` the file into `cable-task/et/data/enhanced_synthetic_data_2.csv`.
+This repo contains a short sample of the data supplied, so the repo is lightweight but still keeps everything coupled together. If you want to run on the full sample dataset, just `mv` the file into `cable-task/etl/data/enhanced_synthetic_data_2.csv`.
 
 ## Notes on the dataset
 
