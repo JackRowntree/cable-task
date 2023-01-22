@@ -13,7 +13,7 @@ A working docker installation
 
 ## Other info
 
-This repo contains a short sample of the data supplied, so the repo is lightweight but still keeps everything coupled together. This is a completely seperate decision to the issue of processing chunks of data etc.! If you want to run on the full sample dataset, just `mv` the file into `cable-task/et/data/enhanced_synthetic_data_2.csv`.
+This repo contains a short sample of the data supplied, so the repo is lightweight but still keeps everything coupled together. If you want to run on the full sample dataset, just `mv` the file into `cable-task/et/data/enhanced_synthetic_data_2.csv`.
 
 ## Notes on the dataset
 
@@ -31,16 +31,18 @@ This dataset is full of personally identifiable info. That would obviously affec
 ## Notes on the solution
 
 ### Notes on architecture
-Data is ingested from a hardcoded path in the repo. Subsequent reads will append chunks of data onto the raw db. You can test this by running on multiple chunks if you wish (it does work!). Overall outline below:
+Data is ingested from a hardcoded path in the repo. Subsequent reads will keep appending ingested csv data into the raw db. Overall outline below + diagram:
 
 1. pre-extract: incoming raw csv chunk appended to raw db
 2. extract: full dataset read from raw db and deduplicated
 3. transform: data aggregated
 4. load: transformed data pushed to transformed db
 
+![](/system_diagram.png?raw=true "Optional Title")
+
 #### Datastore
 I stuck to the sqlite brief - the dbs are persistent between runs of the container thanks to the volume, so raw data will keep being appended to the raw db, which is read by extract and deduplicated.
-Nortmally I would have extended the docker-compose with a postgres service instead as I haven't used sqlite in years!
+Normally I would have extended the docker-compose with a postgres service instead as I haven't used sqlite in years!
 
 #### Pre-extract
 The idea of the pre-extract phase is to `append` incoming chunks of data to a datastore, which will be read in totality in the extract step. This was my interpretation of a pipeline that can handle data ingestion over time in production. Adding a field indicating date of ingestion adds some context to this raw data. 
