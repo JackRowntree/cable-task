@@ -8,4 +8,3 @@ def read_data(connection, table):
 
 def push_data_to_db(df, table, connection, if_exists="fail"):
     df.to_sql(table, connection, index=False, if_exists=if_exists)
-    print("pushed)")
