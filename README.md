@@ -70,3 +70,5 @@ The checks I added with pandera also have really low coverage, but again a contr
 #### Code quality
 More time could have been devoted to type hints, exhaustive docstrings. I sacrificed this for speed.
 
+#### Logging
+Detailed logging of ETL runs would obviously be essential in production, however I sacrificed this for speed.

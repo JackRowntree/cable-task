@@ -43,7 +43,7 @@ def extract():
     """
     df = read_raw_data()
     apply_schemas_and_checks(df)
-    df = df.drop_duplicates('user_id')
+    df = df.drop_duplicates("user_id")
     return df
 
 
