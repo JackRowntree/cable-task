@@ -3,8 +3,9 @@ import sqlite3
 
 CON_LOAD = sqlite3.connect("sqlite/transformed_data.db")
 
+
 def load(df):
-	"""
-	Appends insights to output db.
-	"""
-    push_data_to_db(df, "transformed_data", CON_LOAD, if_exists = "append")
+    """
+    Inserts insights to output db - replaces existing table so output is always up to date.
+    """
+    push_data_to_db(df, "transformed_data", CON_LOAD, if_exists="replace")

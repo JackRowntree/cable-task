@@ -1,5 +1,7 @@
-import pytest 
-import pandas as pd 
+import pytest
+import pandas as pd
+
+
 @pytest.fixture
 def mock_extract_data():
     return pd.DataFrame(
@@ -12,8 +14,14 @@ def mock_extract_data():
                 "E",
                 "F",
             ],
-            "postal_code": ["NW3 2YR", "NW3 2YR", "NW3 2YR", "HA7 3NU", "HA7 3NU", "blah"],
+            "postal_code": [
+                "NW3 2YR",
+                "NW3 2YR",
+                "NW3 2YR",
+                "HA7 3NU",
+                "HA7 3NU",
+                "blah",
+            ],
             "blah": [1, 2, 3, 1, 2, 3],
         }
     )
-

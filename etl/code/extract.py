@@ -6,7 +6,6 @@ from pandera.typing import Series
 
 FPATH = "/etl/data/enhanced_synthetic_data_2.csv"
 CON_RAW = sqlite3.connect("./sqlite/raw_data.db")
-CON_EXTRACT = sqlite3.connect("./sqlite/extract_data.db")
 
 
 class Schema(pa.SchemaModel):
@@ -27,7 +26,7 @@ class Schema(pa.SchemaModel):
 def pre_extract():
     """
     This function handles the ingestion of raw data.
-    A table with a primary key on user_id is created if not existing, 
+    A table with a primary key on user_id is created if not existing,
     a date of ingestion is added, and data is appended to db.
     The goal of this step is to load whatever is coming in into a datastore
     in its raw form - in reality something cheap like S3
@@ -35,7 +34,6 @@ def pre_extract():
     execute_create_table_statemtents()
     data = read_incoming_batch()
     add_ingested_date(data)
-    # TODO
     push_data_to_db(data, "raw_data", CON_RAW, "append")
 
 

@@ -42,6 +42,9 @@ I wrote my solution to be easily adaptable to work with an external persistent d
 3. transform: data aggregated
 4. load: transformed data pushed to db
 
+#### Datastore
+I stuck to the sqlite brief - the dbs are persistent between runs of the container thanks to the volume. Nortmally I would have extended the docker-compose with a postgres service instead as I haven't used sqlite in years!
+
 #### Pre-extract
 The idea of the pre-extract phase is to `append` incoming chunks of data to a datastore, which will be read in totality in the extract step. This was my interpretation of a pipeline that can handle data ingestion over time in production. Adding a field indicating date of ingestion adds some context to this raw data. I also chose to create the table with a primary key, which during my development made sense, but may not be necessary for this datastore.
 
@@ -52,7 +55,7 @@ Sends a `SELECT * ` query to the pre-extract db. Runs `pandera` schema checks - 
 Runs a function calculating the top 10 most common postcodes.
 
 #### Load
-Appends to output db
+Replaces output db with latest aggregated results.
 
 ### Notes on code
 

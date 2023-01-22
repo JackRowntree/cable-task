@@ -4,4 +4,4 @@ services:
     build: ./etl/
     container_name: cable-task-etl
     volumes:
-      - ./etl:/code/
+      - ./etl/sqlite:/etl/sqlite/
