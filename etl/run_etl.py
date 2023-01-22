@@ -5,7 +5,7 @@ from code.load import load
 
 def run_etl():
     """
-    Runs E, T and L
+    Runs Pre-E, E, T and L.
     """
     pre_extract()
     extracted_df = extract()

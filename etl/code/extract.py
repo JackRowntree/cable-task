@@ -11,7 +11,7 @@ CON_EXTRACT = sqlite3.connect("./sqlite/extract_data.db")
 
 class Schema(pa.SchemaModel):
     """
-    Defines schema and checls
+    Defines schema and checks. Can be expanded with more schema info and checks
     """
 
     postal_code: Series[str] = pa.Field()
@@ -27,6 +27,8 @@ class Schema(pa.SchemaModel):
 def pre_extract():
     """
     This function handles the ingestion of raw data.
+    A table with a primary key on user_id is created if not existing, 
+    a date of ingestion is added, and data is appended to db.
     The goal of this step is to load whatever is coming in into a datastore
     in its raw form - in reality something cheap like S3
     """
@@ -34,7 +36,7 @@ def pre_extract():
     data = read_incoming_batch()
     add_ingested_date(data)
     # TODO
-    push_data_to_db(data, "raw_data", CON_RAW, "replace")
+    push_data_to_db(data, "raw_data", CON_RAW, "append")
 
 
 def extract():
@@ -63,7 +65,8 @@ def read_incoming_batch():
 
 def apply_schemas_and_checks(df):
     """
-    Runs pandera validation on df
+    Runs pandera validation on df.
+    Try/catch is just to provide visibility on the results without stopping the code.
     """
     try:
         Schema.validate(df, lazy=True)

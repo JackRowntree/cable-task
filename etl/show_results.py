@@ -5,7 +5,7 @@ CON_LOAD = sqlite3.connect("sqlite/transformed_data.db")
 
 def show_results():
     """
-    Reads aggregated data
+    Reads aggregated data and prints to stdout
     """
     results = read_data(CON_LOAD,'transformed_data')
     print(results)

@@ -3,7 +3,8 @@ import pandas as pd
 
 def transform(data):
 	"""
-	Runs transform functions on data	
+	Runs transform functions on data. 
+	More functionality could be easily added here
 	"""
 	aggregated = calculate_top_10_shared_postcodes(data)
 	return aggregated
